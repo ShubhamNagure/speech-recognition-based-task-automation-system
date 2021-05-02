@@ -9,7 +9,7 @@ import auto_typer
 
 
 class driver:
-
+    user = socket.gethostname()
     @staticmethod
     def wishMe(tts):
         """
@@ -49,7 +49,7 @@ class driver:
         try:
             print("Recognizing...")
             query = r.recognize_google(audio, language='en-in')
-            print(f"User said: {query}\n")
+            print(f"{__class__.user} said: {query}\n")
 
         except Exception as e:
             print(e)
