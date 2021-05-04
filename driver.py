@@ -42,7 +42,7 @@ class driver:
         r = sr.Recognizer()
         with sr.Microphone() as source:
             print("Listening...")
-            r.pause_threshold = 1
+            r.pause_threshold = 2
             r.energy_threshold = 200
             audio = r.listen(source)
 
@@ -108,9 +108,6 @@ class driver:
         elif 'weather' in query:
 
             tts.speak("Let me see how the weather is ?")
-            # with open("weather.py") as f:
-            #     code = compile(f.read(), "weather.py", 'exec')
-            #     exec(code)
             os.system('python weather.py')
             tts.speak("Weather is populated on terminal ! "
                          "please check")

@@ -5,6 +5,7 @@ ext_lib/
 .vscode/
 *.py[cod]
 *$py.class
+*.csv
 
 # C extensions
 *.so
