@@ -9,7 +9,7 @@ from TTS import _TTS
 
 keyboard = Controller()
 
-pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
 
 
 class AutoTyper:

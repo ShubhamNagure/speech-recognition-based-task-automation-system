@@ -5,7 +5,6 @@ import csv
 
 class EmailSender:
 
-
     def __init__(self,port,smtp_server,sender_email):
         self.port = port  # For SSL
         self.smtp_server = smtp_server
@@ -155,8 +154,8 @@ def test():
     mouth = _TTS()
     ear = driver()
     obj = EmailSender(465, "smtp.gmail.com", "athapivathapi@gmail.com")
-    # obj.createContact()
-    obj.searchContact(mouth,ear)
+    obj.createContact()
+    # obj.searchContact(mouth,ear)
 
 if __name__ == '__main__':
     test()
