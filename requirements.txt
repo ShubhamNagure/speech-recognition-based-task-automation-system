@@ -1,2 +1,4 @@
 pynput==1.7.1
 pytesseract==0.3.6
+numpy
+keras

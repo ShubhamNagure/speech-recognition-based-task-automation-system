@@ -43,12 +43,13 @@ class driver:
         with sr.Microphone() as source:
             print("Listening...")
             r.pause_threshold = 2
-            r.energy_threshold = 200
+            r.energy_threshold = 250
             audio = r.listen(source)
 
         try:
             print("Recognizing...")
-            query = r.recognize_google(audio, language='en-in')
+            q = r.recognize_google(audio, language='en-in')
+            query = q.lower()
             print(f"{__class__.user} said: {query}\n")
 
         except Exception as e:
