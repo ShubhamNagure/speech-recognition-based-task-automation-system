@@ -2,7 +2,7 @@ import smtplib, ssl
 from TTS import _TTS
 from driver import driver
 from getpass import win_getpass
-import csv
+import csv,os
 
 
 class EmailSender:
@@ -11,20 +11,6 @@ class EmailSender:
         self.port = port  # For SSL
         self.smtp_server = smtp_server
         self.sender_email = sender_email  # Enter your address
-
-    def send(self):
-        self.receiver_email = "shubhamnagure2344@gmail.com"  # Enter receiver address
-        self.password = input("Type your password and press enter: ")
-
-        message = """\
-            Subject: Hi there
-
-            This message is sent from Python."""
-
-        context = ssl.create_default_context()
-        with smtplib.SMTP_SSL(self.smtp_server, self.port, context=context) as server:
-            server.login(self.sender_email, self.password)
-            server.sendmail(self.sender_email, self.receiver_email, message)
 
     def createContact(self,mouth):
 
@@ -212,7 +198,7 @@ class EmailSender:
 
 
 
-    def getCommandAndSet(self,  mouth):
+    def getCommandAndSet(self,  mouth, receiver, message):
         """get sender credentials from csv , login get test to send"""
         mouth.speak("Handshake initiated with mail server.")
         sendercred= []
@@ -240,7 +226,8 @@ class EmailSender:
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(self.smtp_server, self.port, context=context) as server:
             server.login(self.sender_email, self.password)
-            mouth.speak("")
+            server.sendmail(self.sender_email, receiver, message)
+            mouth.speak(f"successfully sent to {receiver} ")
 
         # if "" in query:
         #     mouth.speak(f"you said: {query}")
@@ -248,7 +235,21 @@ class EmailSender:
         mouth.speak("What message do you want to send")
         message = ear.takeCommand()
         print(message)
-        pass
+        return message
+
+    def checkSenderMailIsConf():
+        try:
+            with open('cred.csv', 'r', newline='') as file:
+                content=file.read()
+                if content is None:
+                    obj = EmailSender()
+                    obj.setYourMailBox()
+                else:
+                    pass
+        except:
+            pass
+        finally:
+            pass
 
 
 def start():
@@ -267,17 +268,56 @@ def start():
 def test():
     mouth = _TTS()
     ear = driver()
-    obj = EmailSender(465, "smtp.gmail.com", "athapivathapi@gmail.com")
-<<<<<<< HEAD
-    obj.createContact()
-    # obj.searchContact(mouth,ear)
-=======
-    # obj.createContact(mouth)
-    # obj.searchContact(mouth,ear)
-    # obj.setYourMailBox(mouth)
-    # obj.getCommandAndSet(mouth)
-    obj.createmessage(ear,mouth)
->>>>>>> 0f7d979ec16267bcb28c688106064feeaa7beaab
+    obj = EmailSender(465,"smtp.gmail.com", "athapivathapi@gmail.com")
+    try:
+        filesize = os.path.getsize("cred.csv")
+        print(filesize)
+        if filesize == 0:
+            print("empty")
+            obj.setYourMailBox(mouth)
+            mouth.speak("do you want to add new receiver ?")
+            resp=ear.takeCommand()
+            if "yes" in resp:
+                obj.createContact(mouth)
+                choosen_mail=obj.searchContact(mouth,ear)
+                print(choosen_mail)
+                message=obj.createmessage(ear,mouth)
+                obj.getCommandAndSet(mouth,choosen_mail,message)
+            elif "no" in resp:
+                choosen_mail=obj.searchContact(mouth,ear)
+                print(choosen_mail)
+                message=obj.createmessage(ear,mouth)
+                obj.getCommandAndSet(mouth,choosen_mail,message)
+        else:
+            mouth.speak("do you want to add new receiver ?")
+            resp=ear.takeCommand()
+            if "yes" in resp:
+                obj.createContact(mouth)
+                choosen_mail=obj.searchContact(mouth,ear)
+                print(choosen_mail)
+                message=obj.createmessage(ear,mouth)
+                obj.getCommandAndSet(mouth,choosen_mail,message)                
+            elif "no" in resp:
+                choosen_mail=obj.searchContact(mouth,ear)
+                print(choosen_mail)
+                message=obj.createmessage(ear,mouth)
+                obj.getCommandAndSet(mouth,choosen_mail,message)
+    except:
+        mouth.speak("Error : Task aborted ")
+    
+
+
+
+
+
+
+
+
+    # # obj.createContact(mouth)
+    # choosen_mail=obj.searchContact(mouth,ear)
+    # # obj.setYourMailBox(mouth)
+    # message=obj.createmessage(ear,mouth)
+    # obj.getCommandAndSet(mouth,choosen_mail,message)
 
 if __name__ == '__main__':
     test()

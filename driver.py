@@ -1,3 +1,4 @@
+
 import speech_recognition as sr  # pip install speechRecognition
 import datetime
 import wikipedia  # pip install wikipedia
@@ -6,6 +7,7 @@ import os
 import socket
 from TTS import _TTS
 import auto_typer
+import emailsender
 
 
 class driver:
@@ -115,6 +117,9 @@ class driver:
 
         elif 'typer' in query:
             auto_typer.start(0.01)
+
+        elif 'send email' in query:
+            emailsender.test()
 
         elif 'goodbye' in query:
             user = socket.gethostname()

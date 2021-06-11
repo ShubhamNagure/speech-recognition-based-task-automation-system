@@ -6,6 +6,7 @@ ext_lib/
 *.py[cod]
 *$py.class
 *.csv
+Documentation/
 
 # C extensions
 *.so
