@@ -237,19 +237,19 @@ class EmailSender:
         print(message)
         return message
 
-    def checkSenderMailIsConf():
-        try:
-            with open('cred.csv', 'r', newline='') as file:
-                content=file.read()
-                if content is None:
-                    obj = EmailSender()
-                    obj.setYourMailBox()
-                else:
-                    pass
-        except:
-            pass
-        finally:
-            pass
+    # def checkSenderMailIsConf():
+    #     try:
+    #         with open('cred.csv', 'r', newline='') as file:
+    #             content=file.read()
+    #             if content is None:
+    #                 obj = EmailSender()
+    #                 obj.setYourMailBox()
+    #             else:
+    #                 pass
+    #     except:
+    #         pass
+    #     finally:
+    #         pass
 
 
 def start():
@@ -305,13 +305,6 @@ def test():
     except:
         mouth.speak("Error : Task aborted ")
     
-
-
-
-
-
-
-
 
     # # obj.createContact(mouth)
     # choosen_mail=obj.searchContact(mouth,ear)

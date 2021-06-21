@@ -30,7 +30,7 @@ class driver:
         else:
             tts.speak("Good Evening!")
 
-        tts.speak("I am Jarvis Sir. Please tell me how may I help you")
+        tts.speak("I am Virtual assistance. Tell me how may I help you")
 
     @staticmethod
     def takeCommand():
@@ -42,10 +42,11 @@ class driver:
         """
 
         r = sr.Recognizer()
-        with sr.Microphone() as source:
-            print("Listening...")
-            r.pause_threshold = 2
-            r.energy_threshold = 250
+        with sr.Microphone(device_index=1) as source:
+            # print("Listening...")
+            # r.pause_threshold = 2
+            # r.energy_threshold = 400
+            r.adjust_for_ambient_noise(source,duration=1)
             audio = r.listen(source)
 
         try:
@@ -102,11 +103,15 @@ class driver:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             tts.speak(f"Sir, the time is {strTime}")
 
-        elif 'open code' in query:
-            codePath = "C:\\Users\\r\\AppData\\" \
-                       "Local\\Programs\\Microsoft VS Code\\Code.exe"
+        elif 'notepad' in query:
+            # codePath = "C:\\Users\\r\\AppData\\" \
+            #            "Local\\Programs\\Microsoft VS Code\\Code.exe"
+
+            codePath ="C:\\Windows\\system32\\notepad.exe"
+            
             # "C:\Users\r\AppData\Local\Programs\Microsoft VS Code\bin"
             os.startfile(codePath)
+            tts.speak("Notepad is ready")
 
         elif 'weather' in query:
 
@@ -118,7 +123,7 @@ class driver:
         elif 'typer' in query:
             auto_typer.start(0.01)
 
-        elif 'send email' in query:
+        elif 'send email'  in query:
             emailsender.test()
 
         elif 'goodbye' in query:
