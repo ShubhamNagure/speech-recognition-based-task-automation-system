@@ -61,12 +61,12 @@ Just stretch over image, it will type on prescribed point
 ## Examples
 ### First
 <div align="center">
-  <img src="auto_typer_eg-1.gif"/>
+  <img src="GIF/auto_typer_eg-1.gif"/>
 </div>
 
 ## Second
 <div align="center">
-  <img src="auto_typer_eg-2.gif"/>
+  <img src="GIF/auto_typer_eg-2.gif"/>
 </div>
 
 3) # EmailSender
