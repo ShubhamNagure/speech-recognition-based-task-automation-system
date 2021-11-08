@@ -2,7 +2,7 @@
 Day to day task automated by using speech recognition module.
 
 
-1) # Weather
+# 1) Weather
 
 ## Setup and activate virtual environment :
 For Unix based systems please execute the following command to create venv and install requirements.
@@ -30,7 +30,7 @@ Use the ```--help``` option to learn all the options available.
 * [Requests](https://requests.readthedocs.io/)
 * [Click](https://click.palletsprojects.com/)
 
-2) # autotyper
+# 2) Autotyper
 
 ## Requirements
 
@@ -69,7 +69,7 @@ Just stretch over image, it will type on prescribed point
   <img src="GIF/auto_typer_eg-2.gif"/>
 </div>
 
-3) # EmailSender
+# 3) EmailSender
 
 EmailSender a command line script and module to sending email. Using either as 
 a command line script or importing as a module in another python script/program 
